@@ -16,8 +16,14 @@ nav ul, footer ul { font-size: 1em; font-family: 'Helvetica', 'Arial', 'Sans-Ser
 nav ul li, footer ul li { display: inline; margin-right: 20px; }
 nav ul {
   position: fixed; /* Set the navbar to fixed position */
+  bottom: 1; /* Position the navbar at the bottom of the page */
+  width: 100%; /* Full width */
+}
+footer ul {
+  position: fixed; /* Set the navbar to fixed position */
   bottom: 0; /* Position the navbar at the bottom of the page */
   width: 100%; /* Full width */
 }
+
 
 footer { border-top: 1px solid #d5d5d5; font-size: 1em; }
