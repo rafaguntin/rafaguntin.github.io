@@ -8,7 +8,7 @@ p1 { font-size: 1em; line-height: .8em; color: #333; font-family: Palatino, 'Pal
 
 #more {display: none;border:#74747D;font-family: Palatino, 'Palatino Linotype', serif;}
 
-h1, h2, h3, h4 { font-family: Palatino, 'Palatino Linotype', serif; }
+h1, h2, h3, h4 { font-family: Palatino, 'Palatino Linotype', serif;border-color:#74747D; }
 h1 { font-size: 3em;  }
 h2 { font-size: 2.7em; }
 h3 { font-size: 2.3em; }
