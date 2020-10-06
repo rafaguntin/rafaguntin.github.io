@@ -41,7 +41,7 @@ policies that target consumption during crises. </i> </span> <big><big>
 				<a style="color:#175556" href="https://negocios.elpais.com.uy/noticias/afectan-trabajadores-uruguayos-cuarentena-distanciamiento-fisico.html" target="_blank"> El Pais Uruguay (newspaper)</a>,
 				<a style="color:#175556" href="http://radiouruguay.uy/teletrabajo-3-de-cada-4-tienen-dificultades-segun-estudio/" target="_blank"> Puntos de Vista (radio)</a>
 				 <br><button style ="font-weight: bold; color:#4A45E5 ;background-color: white;border: none;" onclick="myFunction2()" id="myBtn2">Abstract +<small></button> 
-					       <span id="dots2"></span><span id="more2" style ="" > <br> <small> <i>
+					       <span id="dots2"></span><span id="more2" style ="" > <br> <i>
 I apply the methodology of Dingel and Neiman (2020), and Mongey, Pilossoph,
 and Weinberg (2020) to identify which jobs can be performed at home (WFH) and
 are performed in close physical contact to others (CI) in Uruguay. My baseline estimates show that around 78% of the workers in the private can’t WFH and 22%
@@ -50,7 +50,7 @@ in WFH and CI across the income distribution, geographical locations, age groups
 education levels, and production sectors. In addition, I study the relation between
 WFH and CI with the access to social insurance, hand-to-mouth propensity, intrahousehold insurance and job-automation risk. 
 Finally, I show that my baseline estimates of WFH are consistent with ex-post survey estimations during the COVID-19
-pandemic lockdown. </i> </span> <big><big>
+pandemic lockdown. </i> </span> 
 			</p>				
 		
 			<h3> <big> Work in progress </h3>
@@ -58,8 +58,8 @@ pandemic lockdown. </i> </span> <big><big>
 			       href="/research/Entrepreneurship Financial Frictions and the Market of Firms.pdf"
 			       target="_blank">Entrepreneurship, Financial Frictions, and the Market for Firms</a> <small> (<a style="color:#175556" href="/research/GK - Slides NYU - 09Dec19 - Handout.pdf" target="_blank">slides</a>)	
 				<br> with <a style="font-weight: bold; color:#333" href="https://sites.google.com/view/federicokochen/home" target="_blank"> Federico Kochen </a>
-				 <br><button style ="font-weight: bold; color:#4A45E5 ;background-color: white;border: none;" onclick="myFunction()" id="myBtn">Abstract +<small></button> 
-					       <span id="dots"></span><span id="more" style ="" > <br> <small> <i>
+				 <br><button style ="font-weight: bold; color:#4A45E5 ;background-color: white;border: none;" onclick="myFunction()" id="myBtn3">Abstract +<small></button> 
+					       <span id="dots3"></span><span id="more3" style ="" > <br> <small> <i>
 One out of five entrepreneurs in the U.S. purchased their business. Motivated by this, we
 study how the trade of firms is a mechanism through which productive projects and available
 resources can be better allocated in an economy in which entrepreneurs are subject to 
@@ -96,6 +96,23 @@ function myFunction2() {
   var dots = document.getElementById("dots2");
   var moreText = document.getElementById("more2");
   var btnText = document.getElementById("myBtn2");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Abstract +"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Abstract -"; 
+    moreText.style.display = "inline";
+  }
+}
+</script>
+<script>
+function myFunction3() {
+  var dots = document.getElementById("dots3");
+  var moreText = document.getElementById("more3");
+  var btnText = document.getElementById("myBtn3");
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
