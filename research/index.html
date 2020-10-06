@@ -85,10 +85,12 @@ function myFunction3() {
     dots3.style.display = "inline";
     btnText3.innerHTML = "Abstract +"; 
     moreText3.style.display = "none";
+	  $(this).parent().children(".toggle-text").slideDown();
   } else {
     dots3.style.display = "none";
     btnText3.innerHTML = "Abstract -"; 
     moreText3.style.display = "inline";
+	  $(this).parent().children(".toggle-text").slideDown();
   }
 }
 						
@@ -101,10 +103,12 @@ function myFunction2() {
     dots2.style.display = "inline";
     btnText2.innerHTML = "Abstract +"; 
     moreText2.style.display = "none";
+	$(this).parent().children(".toggle-text").slideDown();
   } else {
     dots2.style.display = "none";
     btnText2.innerHTML = "Abstract -"; 
     moreText2.style.display = "inline";
+	  $(this).parent().children(".toggle-text").slideDown();
   }
 }				
 
@@ -118,10 +122,12 @@ function myFunction() {
     dots.style.display = "inline";
     btnText.innerHTML = "Abstract +"; 
     moreText.style.display = "none";
+	  $(this).parent().children(".toggle-text").slideDown();
   } else {
     dots.style.display = "none";
     btnText.innerHTML = "Abstract -"; 
     moreText.style.display = "inline";
+	  $(this).parent().children(".toggle-text").slideDown();
   }
 }				       
 </script>				
