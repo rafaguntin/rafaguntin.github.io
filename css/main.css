@@ -4,7 +4,7 @@ a { text-decoration: none; color: #CC8400; font-family: Palatino, 'Palatino Lino
 a:hover { text-decoration: underline; font-family: Palatino, 'Palatino Linotype'}
 
 p, ul { font-size: 1.5em; line-height: 1.4em; color: #333; font-family: Palatino, 'Palatino Linotype'}
-p1 { font-size: 1em; line-height: .8em; color: #333; font-family: Palatino, 'Palatino Linotype'; line-height: 1}
+p1 { font-size: 1em; line-height: .8em; color: #333; font-family: Palatino, 'Palatino Linotype'; line-height: 80%}
 
 #more {display: none;font-family: Palatino, 'Palatino Linotype', serif;}
 #more2 {display: none;font-family: Palatino, 'Palatino Linotype', serif;}
