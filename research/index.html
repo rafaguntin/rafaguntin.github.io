@@ -117,6 +117,23 @@ else {
     moreText3.style.display = "inline";
   }
 }
+	
+function myFunction4() {
+  var dots4 = document.getElementById("dots4");
+  var moreText4 = document.getElementById("more4");
+  var btnText4 = document.getElementById("myBtn4");
+
+  if (dots4.style.display === "none") {
+    dots4.style.display = "inline";
+    btnText4.innerHTML = "Abstract +"; 
+    moreText4.style.display = "none";
+  } 
+else {
+    dots4.style.display = "none";
+    btnText4.innerHTML = "Abstract -"; 
+    moreText4.style.display = "inline";
+  }
+}	
 						
 function myFunction2() {
   var dots2 = document.getElementById("dots2");
@@ -135,6 +152,7 @@ else {
   }
 }
 	
+	
 function myFunction() {
   var dots = document.getElementById("dots");
   var moreText = document.getElementById("more");
@@ -151,23 +169,6 @@ else {
     moreText.style.display = "inline";
   }
 }	
-
-function myFunction4() {
-  var dots4 = document.getElementById("dots4");
-  var moreText4 = document.getElementById("more4");
-  var btnText4 = document.getElementById("myBtn4");
-
-  if (dots4.style.display === "none") {
-    dots4.style.display = "inline";
-    btnText4.innerHTML = "Abstract +"; 
-    moreText4.style.display = "none";
-  } 
-else {
-    dots4.style.display = "none";
-    btnText4.innerHTML = "Abstract -"; 
-    moreText4.style.display = "inline";
-  }
-}
 	
 </script>				
 					
