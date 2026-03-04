@@ -216,7 +216,7 @@
     </div>
   </footer>
 
-  <script>
+<script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
 
@@ -228,8 +228,8 @@
 
     document.querySelectorAll('a[href]').forEach(function(a) {
       var href = a.getAttribute('href');
-      var isInternal = href === '/' || href.startsWith('/research') || href.startsWith('/teaching');
-      if (href && !isInternal && (href.startsWith('http') || href.startsWith('mailto:') || href.endsWith('.pdf'))) {
+      var isInternal = (href === '/' || href.startsWith('/research') || href.startsWith('/teaching')) && !href.endsWith('.pdf');
+      if (href && !isInternal && (href.startsWith('http') || href.startsWith('mailto:') || href.endsWith('.pdf') || href.startsWith('/'))) {
         a.setAttribute('target', '_blank');
         a.setAttribute('rel', 'noopener');
       }
