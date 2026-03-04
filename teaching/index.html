@@ -215,9 +215,23 @@
     </div>
   </footer>
 
-  <script>
+    <script>
+    // Nav scroll effect
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Open external links in new tab
+    document.querySelectorAll('a[href]').forEach(function(a) {
+      var href = a.getAttribute('href');
+      var isInternal = href === '/' || href.startsWith('/research') || href.startsWith('/teaching');
+      if (href && !isInternal && (href.startsWith('http') || href.startsWith('mailto:') || href.endsWith('.pdf'))) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      }
+    });
   </script>
+  
 </body>
 </html>
