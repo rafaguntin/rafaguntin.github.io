@@ -1,279 +1,228 @@
----
-layout: default
-title: Rafael Guntin - Research
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research — Rafael Guntin</title>
+  <meta name="description" content="Research by Rafael Guntin. Publications in the American Economic Review, Journal of International Economics, and working papers in macroeconomics and international macro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a3a5c; --navy-deep: #0f2440; --navy-light: #2d5a8a;
+      --cream: #faf8f5; --text: #2c2c2c; --text-light: #6b6b6b;
+      --text-faint: #999; --accent: #3d7cb8; --rule: #d8d4ce;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--sans); color: var(--text); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-		<div class="blurb">
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,248,245,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); transition: box-shadow 0.3s; }
+    nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.06); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 60px; }
+    .nav-name { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 400; color: var(--text-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.12em; transition: color 0.2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--navy); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--navy); }
+    .nav-links a.active::after { width: 100%; }
 
-			  <big>
-    <p><b>Research</b></p>
-  </big>
+    /* PAGE HEADER */
+    .page-header { max-width: 1100px; margin: 0 auto; padding: 100px 2rem 2rem; }
+    .page-title { font-family: var(--serif); font-size: 2.8rem; font-weight: 500; color: var(--navy-deep); margin-bottom: 0.5rem; }
+    .page-subtitle { font-size: 0.95rem; color: var(--text-light); font-weight: 300; max-width: 600px; }
 
+    /* SECTIONS */
+    .content { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 3rem; }
+    .category { margin-bottom: 3rem; }
+    .category-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .category-title { font-family: var(--sans); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--navy-light); white-space: nowrap; }
+    .category-line { flex: 1; height: 1px; background: var(--rule); }
 
-						<!--<p><h4>Publications (including conditionally accepted)</h4><small></p> -->
-			<p>
-				<!--<br> -->
-				Publications<small></p>
-				   
-				      <p> <a style="font-weight: bold; color:#000099"
-					  href="/research/GuOP_Consumption.pdf"
-			                  target="_blank"
-					  >The Micro Anatomy of Macro Consumption Adjustments</a> 
-			         <small> (<a style="color:#175556" href="https://www.nber.org/papers/w27917" target="_blank">NBER working paper</a> | <a style="color:#175556" href="https://www.aeaweb.org/articles?id=10.1257/aer.20201931" target="_blank">link to journal</a>)
-				<br> with 
-				<a style="color:#333" href="https://sites.google.com/site/ottonellopablo/" target="_blank">Pablo Ottonello</a> 
-				 and 
-				<a style="color:#333" href="https://www.perezdiego.org/" target="_blank">Diego Perez</a> 	
-				       <br> <b><i>American Economic Review 2023, Vol. 113, No. 8, 2201-31 </i> </b>
-				       <br><button style ="font-weight: bold; color:#175556 ;background-color: white;border: none;" onclick="myFunction()" id="myBtn">Abstract +<small></button> 
-					       <span id="dots"></span><span id="more" style = "color:#282828; line-height: 1.4em; text-align: justify"> 
-We study crises characterized by large adjustments of aggregate consumption through
-their microlevel patterns. We document the cross-sectional patterns of consumption
-adjustment across the income distribution and  find large adjustments for top-income
-households, who exhibit consumption-income elasticities similar to or larger than the
-average. We construct a heterogeneous-agent open economy model of consumption
-under income fluctuations and show that the data patterns are largely consistent with
-theories that attribute the dynamics of aggregate consumption to changes in aggregate
-permanent income. We also discuss our findings' implications for theories based on the
-tightening of households' borrowing constraints and analyze policy implications.					 
- </span> <big><big>
-                        	</p>	
+    /* PAPERS */
+    .paper { padding: 1.4rem 0; border-bottom: 1px solid rgba(216,212,206,0.5); }
+    .paper:last-child { border-bottom: none; }
+    .paper-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
+    .paper-title a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .paper-title a:hover { color: var(--navy); }
+    .paper-meta { font-size: 0.85rem; color: var(--text-light); font-weight: 300; margin-bottom: 0.15rem; }
+    .paper-meta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .paper-meta a:hover { border-bottom-color: var(--accent); }
+    .paper-journal { font-size: 0.82rem; font-weight: 500; color: var(--navy); font-style: italic; }
+    .paper-award { font-size: 0.8rem; color: var(--navy-light); font-style: italic; margin-top: 0.15rem; }
+    .paper-links { font-size: 0.8rem; margin-top: 0.3rem; color: var(--text-faint); }
+    .paper-links a { color: var(--accent); text-decoration: none; margin-right: 0.8rem; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .paper-links a:hover { border-bottom-color: var(--accent); }
+    .paper-coverage { font-size: 0.75rem; color: var(--text-faint); margin-top: 0.25rem; }
+    .paper-coverage a { color: var(--text-faint); text-decoration: none; border-bottom: 1px dotted var(--rule); transition: color 0.2s; }
+    .paper-coverage a:hover { color: var(--accent); }
 
-	 <p>  <a style="font-weight: bold ; color:#000099"
-		href="/research/LCRG_BCV.pdf"
-			                  target="_blank">
-					The Business Cycle Volatility Puzzle: Emerging vs Developed Economies</a> 
-		         <small> (<a style="color:#175556" href="https://www.sciencedirect.com/science/article/pii/S0022199625001394" target="_blank">link to journal</a>)
-		<br>with <a style="color:#333" href="https://www.luciacasal.com" target="_blank"> Lucia Casal</a>	
-		<br> <b><i> Journal of International Economics 2025, Vol. 158 </i> </b>
-		<br> <small> <span style="color: #000000" class='notbold'><i>Tapan Mitra Memorial Prize for Outstanding 3rd Year Paper (awarded to Lucia Casal, Cornell University)</i></span> <big> 				 
-<br><button style ="font-weight: bold; color:#175556 ;background-color: white;border: none;" onclick="myFunction55()" id="myBtn5">Abstract +<small></button> 
- <span id="dots5"></span> <span id="more5" style = "display:none; color:#282828; line-height: 1.4em; text-align: justify">
-We study the drivers of business cycle volatility differences between emerging and developed economies. 
-	 We develop a multisector small open economy framework with heterogeneous firms and production linkages in which firms are subject to sectoral and firm-level TFP shocks and international prices shocks. 
-	 Using sector-level, firm-level, and international trade data from various developed and emerging economies, we quantify the relevant model-based sufficient statistics. 
-	 We find that differences in sectoral composition between emerging and developed economies can explain up to 77% of the excessive business cycle volatility in emerging economies, while disparities in the distribution of firms account for up to 9%, and the role of international prices shocks is negligible. 
-	 Despite the significant influence of sectoral composition, the decrease in volatility observed in emerging economies over the past four decades cannot be attributed to changes in their economic structure.
-				 </span> <big><big>
-                            </p> 	
-	
-				<p>					
-			<br>
-					<!-- <big><h4>Working Papers</h4><small></p> -->
-			<big>Working Papers<small></p>
+    /* ABSTRACT TOGGLE */
+    .abstract-toggle { font-size: 0.78rem; color: var(--accent); cursor: pointer; margin-top: 0.4rem; display: inline-block; user-select: none; transition: opacity 0.2s; }
+    .abstract-toggle:hover { opacity: 0.7; }
+    .abstract-text { display: none; font-size: 0.85rem; color: var(--text-light); line-height: 1.65; margin-top: 0.6rem; padding: 1rem; background: rgba(216,212,206,0.15); border-left: 2px solid var(--rule); font-weight: 300; }
+    .abstract-text.show { display: block; }
 
-			<p> <a style="font-weight: bold; color:#000099"
-			       href="/research/GK_MarketForFirms.pdf"
-			       target="_blank">Financial Frictions and the Market for Firms</a> <small> <!-- (<a style="color:#175556" href="/research/GK - Slides NYU - 09Dec19 - Handout.pdf" target="_blank">slides</a> | <a style="color:#175556" href="https://ethanminfang.github.io/minfang.github.io/files/Discussions_Kochen_YES2020.pdf" target="_blank">YES discussion</a>)	-->				 
-				<br>with <a style="color:#333" href="https://sites.google.com/view/federicokochen/home" target="_blank"> Federico Kochen</a>
-				       <br> <b><i>Revised and Resubmitted, Review of Economic Studies </i> </b>
-				 <br><button style ="font-weight: bold; color:#175556 ;background-color: white;border: none;" onclick="myFunction3()" id="myBtn3">Abstract +<small></button> 
-					       <span id="dots3"></span><span id="more3" style = "color:#282828; line-height: 1.4em; text-align: justify"> 
-We study and quantify the aggregate implications of the trade of firms in the presence of financial frictions. Empirically, we document that one in four U.S. entrepreneurs purchased their business, with younger, smaller, and higher average revenue product of capital (ARPK) firms having the highest trading rates. After trade, capital outpaces output growth, reducing firms’ ARPK over time. To explain these findings, we propose a general equilibrium model of entrepreneurship with a frictional market for firms in which firm trade alleviates financial constraints. We show that the predictions of our theory are consistent with the cross-sectional and longitudinal facts. Quantitatively, we show that taxing transactions in the market for firms generates sizable aggregate losses, reflecting the role of this market in improving allocative efficiency. The productivity gains from this market are potentially larger in less financially developed economies.
-						 </span> <big><big>
-			</p>									
+    /* FOOTER */
+    footer { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+    .footer-left { font-size: 0.78rem; color: var(--text-faint); }
+    .footer-right { display: flex; gap: 1.5rem; }
+    .footer-right a { font-size: 0.78rem; color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+    .footer-right a:hover { color: var(--navy); }
 
-					 								
-        <p>  <a style="font-weight: bold ; color:#000099"
-		href="/research/Guntin_FirmsRolloverRisk.pdf"
-			                  target="_blank">
-					Firms' Rollover Risk and Macroeconomic Dynamics</a> <small>
-						<small><span style="color: gray;" class='notbold'> [submitted]</span><big>
-		<!--(<a style="color:#175556" href="https://www.rguntin.com/research/Guntin_JMP_slides.pdf" target="_blank">slides</a> | <a style="color:#175556" href="https://twitter.com/rafaguntin/status/1460637829093113859?s=20" target="_blank">thread</a>)-->			
-				<br> <small> <span style="color: #000000" class='notbold'><i>2022 National Prize in Economics (Premio Raul Trajtenberg) Uruguay</i> <big></span>
-<br><button style ="font-weight: bold; color:#175556 ;background-color: white;border: none;" onclick="myFunction4()" id="myBtn4">Abstract +<small></button> 
- <span id="dots4"></span> <span id="more4" style = "color:#282828; line-height: 1.4em; text-align: justify"> 
-		This paper analyzes the macroeconomic implications of firms’ rollover risk. I develop a heterogeneous-firms macroeconomics model where rollover crises arise from coordination failures among creditors.  Rollover crises are events in which a firm defaults because creditors fail to roll over its debt, but would have repaid otherwise.  
-I assess the quantitative relevance of rollover crises using a model-based identification strategy informed by the observed distribution of firms’ bankruptcy outcomes. Finally, I use the model to evaluate the aggregate implications of rollover risk for the U.S. economy and examine the effectiveness of imperfectly targeted credit policies for stabilization during recessions.
-		</span> <big><big>
-                            </p> 
+    @media (max-width: 768px) {
+      .page-header { padding-top: 80px; }
+      .page-title { font-size: 2rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+    @media (max-width: 480px) {
+      .nav-inner, .page-header, .content { padding-left: 1rem; padding-right: 1rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
 
-			<p> <a style="font-weight: bold; color:#000099"
-			       href="/research/GK_TopFirms.pdf"
-			       target="_blank">The Origins of Top Firms</a> <small> 
-				<br>with <a style="color:#333" href="https://sites.google.com/view/federicokochen/home" target="_blank"> Federico Kochen</a>				       
-				 <br><button style ="font-weight: bold; color:#175556 ;background-color: white;border: none;" onclick="myFunction_top()" id="myBtn_top">Abstract +<small></button> 
-					       <span id="dots_top"></span><span id="more_top" style = "display:none; color:#282828; line-height: 1.4em; text-align: justify"> 
-What are the origins of top firms? What features characterize their life cycle trajectories on the way to the top? Using longitudinal firm-level data, we document novel facts about the first twenty years of the firms that reach the top 1 percent of the size distribution. Compared to the firms in the bottom 99 percent, top firms are eight times larger at entry and grow six times more during their first two decades. In terms of inputs, they start with high capital investments, yet their capital-output ratio and labor share decline as they age. As a result, their profit share is much more backloaded towards the second decade of their life cycle. We show that a firm dynamics model with ex-ante heterogeneity, non-homothetic input costs, and forward-looking financing can explain these empirical patterns. Our quantitative results showcase the importance of accounting for top and bottom firm dynamics for the aggregate implications of financial frictions, recent macroeconomic trends, and corporate taxation.
-						 </span> <big><big>
-			</p>	
-			
-				       				       							        								
-	
-								
-<p> <a style="font-weight: bold;  color:#000099"
-			       href="/research/employment_uru_covid_ENG.pdf"
-			       target="_blank">Working From Home and Contact-Intensive Jobs in Uruguay</a> <small> (<a style="color:#175556" href="/research/employment_uru_covid_new.pdf" target="_blank">spanish</a> | <a style="color:#175556" href="/research/employmentcovid_slides_UM.pdf" target="_blank">slides</a> | <a style="color:#175556" href="https://www.hacerempresa.uy/la-naturaleza-del-trabajo-y-la-pandemia-en-uruguay/" target="_blank"> post</a> | <a style="color:#175556" href="https://www.dropbox.com/s/guhnqyo4jzv1bwi/code%2Bdata.zip?raw=1" target="_blank"> data + codes</a>)
-			       <br> <a style="color:#175556" href="https://29e8adb6-91f2-4110-805d-cc89d1f7c269.filesusr.com/ugd/6684c8_b3164f0a75214c94a1fadbe4e60054aa.pdf" target="_blank">RISEP paper</a> <small> <small>  (Social Sciences Research Network to Confront Sequels of the Pandemic - Uruguay) <big> <big>
-	                       <br> <small> supplementary material: <a style="color:#175556" href="/research/employment_uru_covid_risk.pdf" target="_blank">risky jobs in Uruguay</a> <small> <small> (spanish)<big> <big>
-				<br> coverage:
-				<a style="color:#175556" href="https://repositorio.cepal.org/bitstream/handle/11362/45759/1/S2000387_es.pdf" target="_blank"> CEPAL</a>,				
-				<a style="color:#175556" href="https://www.uy.undp.org/content/uruguay/es/home/library/poverty/Impacto_social_y_economico_COVID-19_Uruguay_RBLAC.html" target="_blank"> UNDP</a>,				
-				<a style="color:#175556" href="https://www.latinamerica.undp.org/content/rblac/en/home/presscenter/director-s-graph-for-thought/working-at-a-distance--the-availability-of-teleworkable--jobs-an0.html" target="_blank"> UNDP blog</a>,								
-				<a style="color:#175556" href="https://www.ilo.org/wcmsp5/groups/public/---ed_protect/---protrav/---travail/documents/briefingnote/wcms_743447.pdf" target="_blank"> ILO</a>,
-				<a style="color:#175556" href="https://www.youtube.com/watch?v=2Gr1WlL259c&t=6383s" target="_blank"> En la Mira (TV)</a>,				
-				<a style="color:#175556" href="https://www.elobservador.com.uy/nota/medidas-de-encierro-por-el-covid-19-son-regresivas-segun-estudio-2020619173245" target="_blank"> El Observador (newspaper)</a>,								
-				<a style="color:#175556" href="https://negocios.elpais.com.uy/noticias/afectan-trabajadores-uruguayos-cuarentena-distanciamiento-fisico.html" target="_blank"> El Pais Uruguay (newspaper)</a>,
-				<a style="color:#175556" href="http://radiouruguay.uy/teletrabajo-3-de-cada-4-tienen-dificultades-segun-estudio/" target="_blank"> Puntos de Vista (radio)</a> <big>
-				 <br><button style ="font-weight: bold; color:#175556 ;background-color: white;border: none;" onclick="myFunction2()" id="myBtn2">Abstract +<small></button> 
-					       <span id="dots2"></span><span id="more2" style = "color:#282828; line-height: 1.4em; text-align: justify"> 
-        In this article, I estimate how many workers have jobs that can be performed at home (WFH) and jobs with close physical contact with other people (CI) in Uruguay. 
-        To identify the jobs that are WFH and CI, I adopt the methodology of Dingel & Neiman (2020) and Mongey, Pilossoph & Weinberg (2020) used for the U.S. 
-	My baseline estimates show that around 78% of the workers in the private sector can’t WFH and 22% have CI jobs. 
-	Next, I find large heterogeneity in WFH and CI propensities across the income distribution, geographical locations, age groups, education levels, and production sectors. In addition, I study the access to social insurance, hand-to-mouth propensity, and intra-household insurance for households exposed to the pandemic.  Lastly, I show that my baseline estimates of WFH are consistent with ex-post survey estimations during the Covid-19 pandemic lockdown in Uruguay.
-	</span> <big> <big>
-			</p>	
-                        		
-				<p>
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">Rafael Guntin</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/research" class="active">Research</a></li>
+        <li><a href="/teaching">Teaching</a></li>
+        <li><a href="/CV/CV_RG.pdf">CV</a></li>
+      </ul>
+    </div>
+  </nav>
 
-					<br>
-					<big>Work in Progress<small></p>
-			<!-- <big><h4>Work in Progress</h4><small></p> -->
+  <header class="page-header">
+    <h1 class="page-title">Research</h1>
+  </header>
 
-	<p> <a style="font-weight: bold; color:#000099"
-			       href="/research/LCRG_STcrisis.pdf"
-			       target="_blank">Do Crises Shape the Economic Structure?</a> <small> <!-- (<a style="color:#175556" href="/research/GK - Slides NYU - 09Dec19 - Handout.pdf" target="_blank">slides</a> | <a style="color:#175556" href="https://ethanminfang.github.io/minfang.github.io/files/Discussions_Kochen_YES2020.pdf" target="_blank">YES discussion</a>)	-->				 
-				<br>with <a style="color:#333" href="https://www.luciacasal.com" target="_blank"> Lucia Casal</a>				       
-				<br> <small> <span style="color: #000000" class='notbold'><i>STEG Small Research Grant</i></span> <big> 
-				 <br><button style ="font-weight: bold; color:#175556 ;background-color: white;border: none;" onclick="myFunction6()" id="myBtn6">Abstract +<small></button> 
-					       <span id="dots6"></span> <span id="more6" style = "display:none; color:#282828; line-height: 1.4em; text-align: justify">
-In this paper, we study whether crises accelerate or slow down structural change.  We document the sectoral reallocation of economic activity following crises such as banking and sovereign debt crises, using data from 79 emerging and developed economies covering over 100 crisis episodes between 1950 and 2019. Our analysis reveals significant and persistent shifts in the aftermath of crises. On average, reallocation toward the agricultural sector delays structural transformation by 7 to 9 years, while reallocation out of the service sector is minimal. The construction sector experiences a severe collapse, whereas output shifts to manufacturing without a corresponding reallocation of employment. To understand these patterns, we use a model of growth and structural transformation with input and demand distortions. Our findings show that reallocation in agriculture and services is largely driven by standard income and price effects, while the excessive collapse in construction reflects a sharp relative increase in demand distortions. Additionally, the divergence between output and employment reallocation in manufacturing is explained by significant and persistent changes in labor distortions following a crisis.
-						 </span> <big><big>
-			</p>	      						
+  <main class="content">
 
-<p>  <a style="font-weight: normal; color:#000000" target="_blank">Constrained Credit Policies in Economies with Runs</a> </p>
+    <!-- PUBLICATIONS -->
+    <div class="category">
+      <div class="category-header">
+        <span class="category-title">Publications</span>
+        <div class="category-line"></div>
+      </div>
 
-				
+      <div class="paper">
+        <h3 class="paper-title"><a href="/research/GuOP_Consumption.pdf">The Micro Anatomy of Macro Consumption Adjustments</a></h3>
+        <p class="paper-meta">with <a href="https://sites.google.com/site/ottonellopablo/">Pablo Ottonello</a> and <a href="https://www.perezdiego.org/">Diego Perez</a></p>
+        <p class="paper-journal">American Economic Review 2023, Vol. 113, No. 8, 2201&ndash;31</p>
+        <div class="paper-links"><a href="https://www.nber.org/papers/w27917">NBER WP</a> <a href="https://www.aeaweb.org/articles?id=10.1257/aer.20201931">Journal</a></div>
+        <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
+        <div class="abstract-text">We study crises characterized by large adjustments of aggregate consumption through their microlevel patterns. We document the cross-sectional patterns of consumption adjustment across the income distribution and find large adjustments for top-income households, who exhibit consumption-income elasticities similar to or larger than the average. We construct a heterogeneous-agent open economy model of consumption under income fluctuations and show that the data patterns are largely consistent with theories that attribute the dynamics of aggregate consumption to changes in aggregate permanent income.</div>
+      </div>
 
+      <div class="paper">
+        <h3 class="paper-title"><a href="/research/LCRG_BCV.pdf">The Business Cycle Volatility Puzzle: Emerging vs. Developed Economies</a></h3>
+        <p class="paper-meta">with <a href="https://www.luciacasal.com">Lucia Casal</a></p>
+        <p class="paper-journal">Journal of International Economics 2025, Vol. 158</p>
+        <p class="paper-award">Tapan Mitra Memorial Prize for Outstanding 3rd Year Paper (awarded to Lucia Casal)</p>
+        <div class="paper-links"><a href="https://www.sciencedirect.com/science/article/pii/S0022199625001394">Journal</a></div>
+        <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
+        <div class="abstract-text">We study the drivers of business cycle volatility differences between emerging and developed economies. We develop a multisector small open economy framework with heterogeneous firms and production linkages in which firms are subject to sectoral and firm-level TFP shocks and international prices shocks. We find that differences in sectoral composition between emerging and developed economies can explain up to 77% of the excessive business cycle volatility in emerging economies.</div>
+      </div>
+    </div>
 
+    <!-- WORKING PAPERS -->
+    <div class="category">
+      <div class="category-header">
+        <span class="category-title">Working Papers</span>
+        <div class="category-line"></div>
+      </div>
 
-<script>
+      <div class="paper">
+        <h3 class="paper-title"><a href="/research/GK_MarketForFirms.pdf">Financial Frictions and the Market for Firms</a></h3>
+        <p class="paper-meta">with <a href="https://sites.google.com/view/federicokochen/home">Federico Kochen</a></p>
+        <p class="paper-journal">Revised and Resubmitted, Review of Economic Studies</p>
+        <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
+        <div class="abstract-text">We study and quantify the aggregate implications of the trade of firms in the presence of financial frictions. Empirically, we document that one in four U.S. entrepreneurs purchased their business, with younger, smaller, and higher average revenue product of capital (ARPK) firms having the highest trading rates. We propose a general equilibrium model of entrepreneurship with a frictional market for firms in which firm trade alleviates financial constraints. Quantitatively, taxing transactions in the market for firms generates sizable aggregate losses.</div>
+      </div>
 
-function myFunction_top() {
-  var dots_top = document.getElementById("dots_top");
-  var moreText_top = document.getElementById("more_top");
-  var btnText_top = document.getElementById("myBtn_top");
+      <div class="paper">
+        <h3 class="paper-title"><a href="/research/GK_TopFirms.pdf">The Origins of Top Firms</a></h3>
+        <p class="paper-meta">with <a href="https://sites.google.com/view/federicokochen/home">Federico Kochen</a></p>
+        <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
+        <div class="abstract-text">What are the origins of top firms? Using longitudinal firm-level data, we document novel facts about the first twenty years of the firms that reach the top 1 percent of the size distribution. Top firms are eight times larger at entry and grow six times more during their first two decades. We show that a firm dynamics model with ex-ante heterogeneity, non-homothetic input costs, and forward-looking financing can explain these empirical patterns.</div>
+      </div>
 
-  if (dots_top.style.display === "none") {
-    dots_top.style.display = "inline";
-    btnText_top.innerHTML = "Abstract +"; 
-    moreText_top.style.display = "none";
-  } 
-else {
-    dots_top.style.display = "none";
-    btnText_top.innerHTML = "Abstract -"; 
-    moreText_top.style.display = "inline-block";
-  }
-}	
-	
-			
-function myFunction4() {
-  var dots4 = document.getElementById("dots4");
-  var moreText4 = document.getElementById("more4");
-  var btnText4 = document.getElementById("myBtn4");
+      <div class="paper">
+        <h3 class="paper-title"><a href="/research/Guntin_FirmsRolloverRisk.pdf">Firms' Rollover Risk and Macroeconomic Dynamics</a></h3>
+        <p class="paper-award">2022 National Prize in Economics (Premio Raul Trajtenberg), Uruguay</p>
+        <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
+        <div class="abstract-text">This paper analyzes the macroeconomic implications of firms' rollover risk. I develop a heterogeneous-firms macroeconomics model where rollover crises arise from coordination failures among creditors. I assess the quantitative relevance of rollover crises using a model-based identification strategy informed by the observed distribution of firms' bankruptcy outcomes, and examine the effectiveness of imperfectly targeted credit policies for stabilization during recessions.</div>
+      </div>
 
-  if (dots4.style.display === "none") {
-    dots4.style.display = "inline";
-    btnText4.innerHTML = "Abstract +"; 
-    moreText4.style.display = "none";
-  } 
-else {
-    dots4.style.display = "none";
-    btnText4.innerHTML = "Abstract -"; 
-    moreText4.style.display = "inline-block";
-  }
-}	
-		
-		
-function myFunction3() {
-  var dots3 = document.getElementById("dots3");
-  var moreText3 = document.getElementById("more3");
-  var btnText3 = document.getElementById("myBtn3");
+      <div class="paper">
+        <h3 class="paper-title"><a href="/research/employment_uru_covid_ENG.pdf">Working From Home and Contact-Intensive Jobs in Uruguay</a></h3>
+        <p class="paper-meta"><a href="https://anciu.org.uy/risep/serie-documentos-de-risep.html">RISEP Paper</a> &mdash; Social Sciences Research Network, Uruguay</p>
+        <div class="paper-links">
+          <a href="/research/employment_uru_covid_new.pdf">Spanish</a>
+          <a href="/research/employmentcovid_slides_UM.pdf">Slides</a>
+          <a href="https://www.hacerempresa.uy/la-naturaleza-del-trabajo-y-la-pandemia-en-uruguay/">Post</a>
+          <a href="https://www.dropbox.com/s/guhnqyo4jzv1bwi/code%2Bdata.zip?raw=1">Data + Codes</a>
+        </div>
+        <p class="paper-coverage">
+          Coverage:
+          <a href="https://repositorio.cepal.org/bitstream/handle/11362/45759/1/S2000387_es.pdf">CEPAL</a>,
+          <a href="https://www.uy.undp.org/content/uruguay/es/home/library/poverty/Impacto_social_y_economico_COVID-19_Uruguay_RBLAC.html">UNDP</a>,
+          <a href="https://www.ilo.org/wcmsp5/groups/public/---ed_protect/---protrav/---travail/documents/briefingnote/wcms_743447.pdf">ILO</a>,
+          <a href="https://www.elobservador.com.uy/nota/medidas-de-encierro-por-el-covid-19-son-regresivas-segun-estudio-2020619173245">El Observador</a>,
+          <a href="https://negocios.elpais.com.uy/noticias/afectan-trabajadores-uruguayos-cuarentena-distanciamiento-fisico.html">El Pa&iacute;s</a>
+        </p>
+        <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
+        <div class="abstract-text">In this article, I estimate how many workers have jobs that can be performed at home (WFH) and jobs with close physical contact with other people (CI) in Uruguay. My baseline estimates show that around 78% of the workers in the private sector can't WFH and 22% have CI jobs. I find large heterogeneity in WFH and CI propensities across the income distribution, geographical locations, age groups, education levels, and production sectors.</div>
+      </div>
+    </div>
 
-  if (dots3.style.display === "none") {
-    dots3.style.display = "inline";
-    btnText3.innerHTML = "Abstract +"; 
-    moreText3.style.display = "none";
-  } 
-else {
-    dots3.style.display = "none";
-    btnText3.innerHTML = "Abstract -"; 
-    moreText3.style.display = "inline-block";
-  }
-}
-	
-function myFunction55() {
-  var dots5 = document.getElementById("dots5");
-  var moreText5 = document.getElementById("more5");
-  var btnText5 = document.getElementById("myBtn5");
+    <!-- WORK IN PROGRESS -->
+    <div class="category">
+      <div class="category-header">
+        <span class="category-title">Work in Progress</span>
+        <div class="category-line"></div>
+      </div>
 
-  if (dots5.style.display === "none") {
-    dots5.style.display = "inline";
-    btnText5.innerHTML = "Abstract +"; 
-    moreText5.style.display = "none";
-  } 
-else {
-    dots5.style.display = "none";
-    btnText5.innerHTML = "Abstract -"; 
-    moreText5.style.display = "inline-block";
-  }
-}
+      <div class="paper">
+        <h3 class="paper-title"><a href="/research/LCRG_STcrisis.pdf">Do Crises Shape the Economic Structure?</a></h3>
+        <p class="paper-meta">with <a href="https://www.luciacasal.com">Lucia Casal</a> &middot; <em><a href="https://steg.cepr.org/funding/small-phd-research-grants-srgs">STEG Small Research Grant</a></em></p>
+        <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
+        <div class="abstract-text">We study whether crises accelerate or slow down structural change. We document the sectoral reallocation of economic activity following crises such as banking and sovereign debt crises, using data from 79 emerging and developed economies covering over 100 crisis episodes between 1950 and 2019. Our analysis reveals significant and persistent shifts in the aftermath of crises.</div>
+      </div>
 
-	function myFunction6() {
-  var dots6 = document.getElementById("dots6");
-  var moreText6 = document.getElementById("more6");
-  var btnText6 = document.getElementById("myBtn6");
+      <div class="paper">
+        <h3 class="paper-title">Constrained Credit Policies in Economies with Runs</h3>
+      </div>
+    </div>
 
-  if (dots6.style.display === "none") {
-    dots6.style.display = "inline";
-    btnText6.innerHTML = "Abstract +"; 
-    moreText6.style.display = "none";
-  } 
-else {
-    dots6.style.display = "none";
-    btnText6.innerHTML = "Abstract -"; 
-    moreText6.style.display = "inline-block";
-  }
-}	
-	
-						
-function myFunction2() {
-  var dots2 = document.getElementById("dots2");
-  var moreText2 = document.getElementById("more2");
-  var btnText2 = document.getElementById("myBtn2");
+  </main>
 
-  if (dots2.style.display === "none") {
-    dots2.style.display = "inline";
-    btnText2.innerHTML = "Abstract +"; 
-    moreText2.style.display = "none";
-  }
-else {
-    dots2.style.display = "none";
-    btnText2.innerHTML = "Abstract -"; 
-    moreText2.style.display = "inline-block";
-  }
-}
+  <footer>
+    <div class="footer-left">&copy; 2025 Rafael Guntin &middot; University of Rochester</div>
+    <div class="footer-right">
+      <a href="mailto:lguntinw@ur.rochester.edu">Email</a>
+      <a href="/CV/CV_RG.pdf">CV</a>
+    </div>
+  </footer>
 
-	
-function myFunction() {
-  var dots = document.getElementById("dots");
-  var moreText = document.getElementById("more");
-  var btnText = document.getElementById("myBtn");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "Abstract +"; 
-    moreText.style.display = "none";
-  }
-else {
-    dots.style.display = "none";
-    btnText.innerHTML = "Abstract -"; 
-    moreText.style.display = "inline-block";
-  }
-}	
-	
-
-	
-</script>				
-					
-		</div>
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    function toggleAbstract(el) {
+      const abs = el.nextElementSibling;
+      abs.classList.toggle('show');
+      el.textContent = abs.classList.contains('show') ? 'Abstract \u2212' : 'Abstract +';
+    }
+  </script>
+</body>
+</html>
