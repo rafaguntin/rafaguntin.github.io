@@ -219,28 +219,13 @@
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
-    function toggleAbstract(el) {
-      const abs = el.nextElementSibling;
-      abs.classList.toggle('show');
-      el.textContent = abs.classList.contains('show') ? 'Abstract \u2212' : 'Abstract +';
-    }
-  </script>
 
-   <script>
-    // Nav scroll effect
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    });
-
-    // Abstract toggle
     function toggleAbstract(el) {
       const abs = el.nextElementSibling;
       abs.classList.toggle('show');
       el.textContent = abs.classList.contains('show') ? 'Abstract \u2212' : 'Abstract +';
     }
 
-    // Open external links in new tab
     document.querySelectorAll('a[href]').forEach(function(a) {
       var href = a.getAttribute('href');
       var isInternal = href === '/' || href.startsWith('/research') || href.startsWith('/teaching');
@@ -253,4 +238,3 @@
 
 </body>
 </html>
-
