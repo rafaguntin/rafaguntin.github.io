@@ -550,30 +550,34 @@ layout: null
 
   <!-- 
   EASTER EGG: Retro Mini Golf
-  Add this script right before </body> in your index.html
-  Triggered by clicking "Rafael Guntin" in the nav 5 times
+  Paste this entire block right before </body> in your index.html
+  Triggered by clicking "Rafael Guntin" in the nav 5 times quickly
 -->
 <script>
 (function() {
-  // --- TRIGGER: 5 clicks on nav name ---
   var clickCount = 0;
   var clickTimer = null;
   var navName = document.querySelector('.nav-name');
   if (!navName) return;
 
   navName.addEventListener('click', function(e) {
+    e.preventDefault();
     clickCount++;
     clearTimeout(clickTimer);
-    clickTimer = setTimeout(function() { clickCount = 0; }, 1500);
-    if (clickCount >= 5) {
-      e.preventDefault();
+    clickTimer = setTimeout(function() {
+      if (clickCount < 5) {
+        window.location.href = '/';
+      }
       clickCount = 0;
+    }, 800);
+    if (clickCount >= 5) {
+      clickCount = 0;
+      clearTimeout(clickTimer);
       launchGolf();
     }
   });
 
   function launchGolf() {
-    // Prevent duplicates
     if (document.getElementById('golf-overlay')) return;
 
     var overlay = document.createElement('div');
@@ -604,7 +608,6 @@ layout: null
       style.remove();
     });
 
-    // --- GAME ENGINE ---
     var canvas = document.getElementById('golf-canvas');
     var W = 600, H = 450;
     canvas.width = W; canvas.height = H;
@@ -616,25 +619,15 @@ layout: null
     var ballMoving = false;
     var holeComplete = false;
 
-    // Course definitions (9 holes)
     var courses = [
-      // Hole 1: Simple straight
       { ball:[100,225], hole:[500,225], par:2, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450]], water:[], sand:[] },
-      // Hole 2: L-shape
       { ball:[80,380], hole:[520,80], par:3, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450],[200,0,20,300],[200,280,400,20]], water:[], sand:[[400,100,80,80]] },
-      // Hole 3: Island green
       { ball:[80,225], hole:[480,225], par:3, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450]], water:[[300,100,200,250]], sand:[[260,160,40,130]] },
-      // Hole 4: Zigzag
       { ball:[80,400], hole:[520,50], par:4, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450],[150,0,20,320],[300,130,20,320],[450,0,20,320]], water:[], sand:[[60,60,70,70],[380,350,70,70]] },
-      // Hole 5: Central obstacle
       { ball:[80,225], hole:[520,225], par:3, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450],[250,150,100,150]], water:[[400,50,80,100],[400,300,80,100]], sand:[] },
-      // Hole 6: Narrow corridor
       { ball:[80,225], hole:[520,225], par:3, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450],[0,170,400,15],[200,265,400,15]], water:[], sand:[[100,185,80,80],[420,185,80,80]] },
-      // Hole 7: Pool table
       { ball:[150,225], hole:[530,50], par:3, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450],[200,100,20,120],[380,230,20,120],[200,330,180,20]], water:[], sand:[] },
-      // Hole 8: Water hazard
       { ball:[80,400], hole:[520,60], par:4, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450],[250,200,20,250]], water:[[300,250,200,100],[100,50,150,100]], sand:[[400,350,100,60]] },
-      // Hole 9: The gauntlet
       { ball:[50,225], hole:[550,225], par:5, walls:[[0,0,600,10],[0,440,600,10],[0,0,10,450],[590,0,10,450],[120,0,15,180],[120,260,15,190],[240,0,15,250],[240,330,15,120],[360,100,15,180],[360,360,15,90],[480,0,15,300],[480,380,15,70]], water:[[170,300,50,80]], sand:[[290,50,50,60],[420,350,50,60]] }
     ];
 
@@ -656,19 +649,14 @@ layout: null
     }
 
     function draw() {
-      // Fairway
       ctx.fillStyle = '#2d8a4e';
       ctx.fillRect(0, 0, W, H);
-
-      // Subtle grass texture
       ctx.fillStyle = 'rgba(0,0,0,0.04)';
       for (var i = 0; i < W; i += 12) {
         for (var j = 0; j < H; j += 12) {
           if ((i + j) % 24 === 0) ctx.fillRect(i, j, 6, 6);
         }
       }
-
-      // Water
       ctx.fillStyle = '#2266aa';
       for (var w = 0; w < water.length; w++) {
         ctx.fillRect(water[w][0], water[w][1], water[w][2], water[w][3]);
@@ -677,8 +665,6 @@ layout: null
         ctx.fillRect(water[w][0]+15, water[w][1]+15, water[w][2]-30, 3);
         ctx.fillStyle = '#2266aa';
       }
-
-      // Sand
       ctx.fillStyle = '#d4b96a';
       for (var s = 0; s < sand.length; s++) {
         ctx.fillRect(sand[s][0], sand[s][1], sand[s][2], sand[s][3]);
@@ -690,25 +676,18 @@ layout: null
         }
         ctx.fillStyle = '#d4b96a';
       }
-
-      // Walls
       ctx.fillStyle = '#1a3a1a';
       for (var i = 0; i < walls.length; i++) {
         ctx.fillRect(walls[i][0], walls[i][1], walls[i][2], walls[i][3]);
       }
-      // Wall highlights
       ctx.fillStyle = 'rgba(255,255,255,0.08)';
       for (var i = 0; i < walls.length; i++) {
         ctx.fillRect(walls[i][0], walls[i][1], walls[i][2], 2);
       }
-
-      // Hole shadow
       ctx.beginPath();
       ctx.arc(hole.x+1, hole.y+1, hole.r+2, 0, Math.PI*2);
       ctx.fillStyle = 'rgba(0,0,0,0.3)';
       ctx.fill();
-
-      // Hole
       ctx.beginPath();
       ctx.arc(hole.x, hole.y, hole.r, 0, Math.PI*2);
       ctx.fillStyle = '#111';
@@ -717,8 +696,6 @@ layout: null
       ctx.arc(hole.x, hole.y, hole.r-3, 0, Math.PI*2);
       ctx.fillStyle = '#1a1a1a';
       ctx.fill();
-
-      // Flag
       ctx.strokeStyle = '#ddd';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -731,14 +708,10 @@ layout: null
       ctx.lineTo(hole.x+15, hole.y-24);
       ctx.lineTo(hole.x, hole.y-18);
       ctx.fill();
-
-      // Ball shadow
       ctx.beginPath();
       ctx.arc(ball.x+2, ball.y+2, ball.r, 0, Math.PI*2);
       ctx.fillStyle = 'rgba(0,0,0,0.25)';
       ctx.fill();
-
-      // Ball
       ctx.beginPath();
       ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
       ctx.fillStyle = '#fff';
@@ -747,56 +720,46 @@ layout: null
       ctx.arc(ball.x-2, ball.y-2, ball.r*0.4, 0, Math.PI*2);
       ctx.fillStyle = 'rgba(255,255,255,0.8)';
       ctx.fill();
-
-      // Aim line
       if (aiming && !ballMoving && !holeComplete) {
-        var dx = aimStart.x - ball.x;
-        var dy = aimStart.y - ball.y;
-        var len = Math.sqrt(dx*dx + dy*dy);
-        var maxLen = 150;
-        var power = Math.min(len, maxLen);
-        // Draw dotted line in opposite direction of drag
-        ctx.strokeStyle = 'rgba(255,255,200,0.6)';
-        ctx.lineWidth = 1.5;
-        ctx.setLineDash([4, 4]);
-        ctx.beginPath();
-        ctx.moveTo(ball.x, ball.y);
-        ctx.lineTo(ball.x - dx/len * power, ball.y - dy/len * power);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        // Power indicator
-        var pct = Math.round(power / maxLen * 100);
-        ctx.fillStyle = pct > 75 ? '#ff6b6b' : pct > 40 ? '#f0e68c' : '#8fbc8f';
-        ctx.font = '11px "DM Sans", sans-serif';
-        ctx.fillText(pct + '%', ball.x + 12, ball.y - 12);
+        var adx = aimStart.x - ball.x;
+        var ady = aimStart.y - ball.y;
+        var alen = Math.sqrt(adx*adx + ady*ady);
+        if (alen > 0) {
+          var maxLen = 150;
+          var power = Math.min(alen, maxLen);
+          ctx.strokeStyle = 'rgba(255,255,200,0.6)';
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(ball.x, ball.y);
+          ctx.lineTo(ball.x - adx/alen * power, ball.y - ady/alen * power);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          var pct = Math.round(power / maxLen * 100);
+          ctx.fillStyle = pct > 75 ? '#ff6b6b' : pct > 40 ? '#f0e68c' : '#8fbc8f';
+          ctx.font = '11px "DM Sans", sans-serif';
+          ctx.fillText(pct + '%', ball.x + 12, ball.y - 12);
+        }
       }
     }
 
     function update() {
       if (!ballMoving) return;
-
-      // Friction
       var friction = 0.985;
-      // Check if on sand
       for (var s = 0; s < sand.length; s++) {
         if (ball.x > sand[s][0] && ball.x < sand[s][0]+sand[s][2] &&
             ball.y > sand[s][1] && ball.y < sand[s][1]+sand[s][3]) {
           friction = 0.96;
         }
       }
-
       ball.vx *= friction;
       ball.vy *= friction;
       ball.x += ball.vx;
       ball.y += ball.vy;
-
-      // Wall collision
       for (var i = 0; i < walls.length; i++) {
         var w = walls[i];
         if (ball.x + ball.r > w[0] && ball.x - ball.r < w[0]+w[2] &&
             ball.y + ball.r > w[1] && ball.y - ball.r < w[1]+w[3]) {
-          // Find overlap on each side
           var overlapL = (ball.x + ball.r) - w[0];
           var overlapR = (w[0] + w[2]) - (ball.x - ball.r);
           var overlapT = (ball.y + ball.r) - w[1];
@@ -811,12 +774,9 @@ layout: null
           }
         }
       }
-
-      // Water hazard
-      for (var w = 0; w < water.length; w++) {
-        if (ball.x > water[w][0] && ball.x < water[w][0]+water[w][2] &&
-            ball.y > water[w][1] && ball.y < water[w][1]+water[w][3]) {
-          // Reset to start + penalty
+      for (var wi = 0; wi < water.length; wi++) {
+        if (ball.x > water[wi][0] && ball.x < water[wi][0]+water[wi][2] &&
+            ball.y > water[wi][1] && ball.y < water[wi][1]+water[wi][3]) {
           var c = courses[currentHole];
           ball.x = c.ball[0]; ball.y = c.ball[1];
           ball.vx = 0; ball.vy = 0;
@@ -829,11 +789,9 @@ layout: null
           return;
         }
       }
-
-      // Hole detection
-      var dx = ball.x - hole.x;
-      var dy = ball.y - hole.y;
-      var dist = Math.sqrt(dx*dx + dy*dy);
+      var hdx = ball.x - hole.x;
+      var hdy = ball.y - hole.y;
+      var dist = Math.sqrt(hdx*hdx + hdy*hdy);
       var speed = Math.sqrt(ball.vx*ball.vx + ball.vy*ball.vy);
       if (dist < hole.r && speed < 5) {
         ball.x = hole.x; ball.y = hole.y;
@@ -854,8 +812,6 @@ layout: null
         document.getElementById('golf-msg').textContent = msg;
         return;
       }
-
-      // Stop when slow enough
       if (Math.abs(ball.vx) < 0.08 && Math.abs(ball.vy) < 0.08) {
         ball.vx = 0; ball.vy = 0;
         ballMoving = false;
@@ -868,7 +824,6 @@ layout: null
       requestAnimationFrame(gameLoop);
     }
 
-    // --- INPUT ---
     canvas.addEventListener('mousedown', function(e) {
       if (ballMoving) return;
       if (holeComplete) {
@@ -903,15 +858,15 @@ layout: null
       var scaleY = H / rect.height;
       var mx = (e.clientX - rect.left) * scaleX;
       var my = (e.clientY - rect.top) * scaleY;
-      var dx = mx - ball.x;
-      var dy = my - ball.y;
-      var len = Math.sqrt(dx*dx + dy*dy);
-      if (len < 5) return;
+      var sdx = mx - ball.x;
+      var sdy = my - ball.y;
+      var slen = Math.sqrt(sdx*sdx + sdy*sdy);
+      if (slen < 5) return;
       var maxLen = 150;
-      var power = Math.min(len, maxLen) / maxLen;
-      var speed = power * 10;
-      ball.vx = -dx/len * speed;
-      ball.vy = -dy/len * speed;
+      var power = Math.min(slen, maxLen) / maxLen;
+      var spd = power * 10;
+      ball.vx = -sdx/slen * spd;
+      ball.vy = -sdy/slen * spd;
       ballMoving = true;
       strokes++;
       totalStrokes++;
@@ -919,7 +874,6 @@ layout: null
       document.getElementById('golf-msg').textContent = '';
     });
 
-    // Touch support
     canvas.addEventListener('touchstart', function(e) {
       e.preventDefault();
       var t = e.touches[0];
@@ -936,7 +890,6 @@ layout: null
       canvas.dispatchEvent(new MouseEvent('mouseup', {clientX:t.clientX,clientY:t.clientY}));
     }, {passive:false});
 
-    // ESC to close
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && document.getElementById('golf-overlay')) {
         overlay.remove();
@@ -944,7 +897,6 @@ layout: null
       }
     });
 
-    // Start
     loadHole(0);
     gameLoop();
   }
