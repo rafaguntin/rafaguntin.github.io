@@ -549,6 +549,99 @@ layout: null
   </script>
 
   <!-- 
+  EASTER EGG: Matrix Economics Rain
+  Paste this block right before </body>
+  Triggered by typing "macro" on the keyboard
+-->
+<script>
+(function() {
+  var buffer = '';
+  var running = false;
+
+  document.addEventListener('keydown', function(e) {
+    if (running) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    buffer += e.key.toLowerCase();
+    if (buffer.length > 10) buffer = buffer.slice(-10);
+    if (buffer.indexOf('macro') !== -1) {
+      buffer = '';
+      launchMatrix();
+    }
+  });
+
+  function launchMatrix() {
+    if (running) return;
+    running = true;
+
+    var overlay = document.createElement('div');
+    overlay.id = 'matrix-overlay';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9998;pointer-events:none;animation:matrixIn .3s ease';
+
+    var style = document.createElement('style');
+    style.textContent = '@keyframes matrixIn{from{opacity:0}to{opacity:1}}@keyframes matrixOut{from{opacity:1}to{opacity:0}}';
+    document.head.appendChild(style);
+
+    var canvas = document.createElement('canvas');
+    canvas.style.cssText = 'display:block;width:100%;height:100%';
+    overlay.appendChild(canvas);
+    document.body.appendChild(overlay);
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var ctx = canvas.getContext('2d');
+
+    var chars = '$%\u03C0\u0394\u03C3\u03B2\u03B1\u03B3\u03BB\u03BC\u03C4\u03C6\u03C8\u03A9\u222B\u2211\u2202\u221E\u2248\u2260\u00B1\u221AGDPCPINFIRYMCIS'.split('');
+    var fontSize = 16;
+    var columns = Math.floor(canvas.width / fontSize);
+    var drops = [];
+    for (var i = 0; i < columns; i++) {
+      drops[i] = Math.random() * -20;
+    }
+
+    var interval = setInterval(function() {
+      ctx.fillStyle = 'rgba(15, 36, 64, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (var i = 0; i < drops.length; i++) {
+        var char = chars[Math.floor(Math.random() * chars.length)];
+        var x = i * fontSize;
+        var y = drops[i] * fontSize;
+
+        ctx.fillStyle = '#8fbc8f';
+        ctx.font = fontSize + 'px monospace';
+        ctx.fillText(char, x, y);
+
+        if (drops[i] > 1) {
+          ctx.fillStyle = 'rgba(45, 138, 78, 0.6)';
+          ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y - fontSize);
+        }
+        if (drops[i] > 2) {
+          ctx.fillStyle = 'rgba(45, 138, 78, 0.3)';
+          ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y - fontSize * 2);
+        }
+
+        if (y > canvas.height && Math.random() > 0.98) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }, 45);
+
+    // Auto-close after 5 seconds
+    setTimeout(function() {
+      overlay.style.animation = 'matrixOut 1s ease forwards';
+      setTimeout(function() {
+        clearInterval(interval);
+        overlay.remove();
+        style.remove();
+        running = false;
+      }, 1000);
+    }, 5000);
+  }
+})();
+</script>
+
+  <!-- 
   EASTER EGG: Retro Mini Golf
   Paste this entire block right before </body> in your index.html
   Triggered by clicking "Rafael Guntin" in the nav 5 times quickly
