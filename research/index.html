@@ -52,9 +52,36 @@ layout: null
     /* PAPERS */
     .paper { padding: 1.4rem 0; border-bottom: 1px solid rgba(216,212,206,0.5); }
     .paper:last-child { border-bottom: none; }
-    .paper-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
-    .paper-title a { color: inherit; text-decoration: none; transition: color 0.2s; }
-    .paper-title a:hover { color: var(--navy); }
+
+    /* ── CHANGE 1: Paper titles — larger, navy-deep, heavier weight ── */
+    .paper-title {
+      font-family: var(--serif);
+      font-size: 1.28rem;          /* was 1.15rem */
+      font-weight: 600;            /* was 500 */
+      color: var(--navy-deep);     /* was var(--text) */
+      margin-bottom: 0.25rem;
+      line-height: 1.35;
+    }
+
+    /* ── CHANGE 2: Animated underline + nudge on title links ── */
+    .paper-title a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      display: inline;
+      /* Animated underline via background-size trick — works on multiline */
+      background-image: linear-gradient(var(--navy-light), var(--navy-light));
+      background-repeat: no-repeat;
+      background-size: 0% 1.5px;
+      background-position: 0 100%;
+      transition: color 0.22s ease, background-size 0.28s ease;
+    }
+    .paper-title a:hover {
+      color: var(--navy);
+      background-size: 100% 1.5px;  /* underline draws in left→right */
+    }
+
     .paper-meta { font-size: 0.85rem; color: var(--text-light); font-weight: 300; margin-bottom: 0.15rem; }
     .paper-meta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
     .paper-meta a:hover { border-bottom-color: var(--accent); }
@@ -70,7 +97,23 @@ layout: null
     /* ABSTRACT TOGGLE */
     .abstract-toggle { font-size: 0.78rem; color: var(--accent); cursor: pointer; margin-top: 0.4rem; display: inline-block; user-select: none; transition: opacity 0.2s; }
     .abstract-toggle:hover { opacity: 0.7; }
-    .abstract-text { display: none; font-size: 0.85rem; color: var(--text-light); line-height: 1.65; margin-top: 0.6rem; padding: 1rem; background: rgba(216,212,206,0.15); border-left: 2px solid var(--rule); font-weight: 300; }
+
+    /* ── CHANGE 3: Justified abstract text with hyphenation ── */
+    .abstract-text {
+      display: none;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-top: 0.6rem;
+      padding: 1rem;
+      background: rgba(216,212,206,0.15);
+      border-left: 2px solid var(--rule);
+      font-weight: 300;
+      text-align: justify;          /* justified text */
+      hyphens: auto;                /* prevents ugly gaps */
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+    }
     .abstract-text.show { display: block; }
 
     /* FOOTER */
@@ -133,8 +176,8 @@ households, who exhibit consumption-income elasticities similar to or larger tha
 average. We construct a heterogeneous-agent open economy model of consumption
 under income fluctuations and show that the data patterns are largely consistent with
 theories that attribute the dynamics of aggregate consumption to changes in aggregate
-permanent income. We also discuss our findings’ implications for theories based on the
-tightening of households’ borrowing constraints and analyze policy implications.</div>
+permanent income. We also discuss our findings' implications for theories based on the
+tightening of households' borrowing constraints and analyze policy implications.</div>
       </div>
 
       <div class="paper">
@@ -172,7 +215,7 @@ economies over the past four decades cannot be attributed to changes in their ec
           We study and quantify the aggregate implications of the trade of firms in the presence of financial frictions. Empirically, we document that one in four U.S. entrepreneurs
 purchased their business, with younger, smaller, and higher average revenue product of
 capital (ARPK) firms having the highest trading rates. After trade, capital outpaces
-output growth, reducing firms’ ARPK over time. To explain these findings, we propose
+output growth, reducing firms' ARPK over time. To explain these findings, we propose
 a general equilibrium model of entrepreneurship with a frictional market for firms in
 which firm trade alleviates financial constraints. We show that the predictions of our
 theory are consistent with the cross-sectional and longitudinal facts. Quantitatively, we
@@ -203,12 +246,12 @@ by distortions that affect the entry and survival of future top firms.</div>
         <p class="paper-award">2022 National Prize in Economics (Premio Raul Trajtenberg), Uruguay</p>
         <span class="abstract-toggle" onclick="toggleAbstract(this)">Abstract +</span>
         <div class="abstract-text">
-          This paper analyzes the macroeconomic implications of firms’ rollover risk. I
+          This paper analyzes the macroeconomic implications of firms' rollover risk. I
 develop a heterogeneous-firms macroeconomics model where rollover crises arise
 from coordination failures among creditors. Rollover crises are events in which a
 firm defaults because creditors fail to roll over its debt, but would have repaid
 otherwise. I assess the quantitative relevance of rollover crises using a model-based
-identification strategy informed by the observed distribution of firms’ bankruptcy
+identification strategy informed by the observed distribution of firms' bankruptcy
 outcomes. Finally, I use the model to evaluate the aggregate implications of rollover
 risk for the U.S. economy and examine the effectiveness of imperfectly targeted
 credit policies for stabilization during recessions.          
@@ -238,7 +281,7 @@ credit policies for stabilization during recessions.
 at home (WFH) and jobs with close physical contact with other people (CI) in
 Uruguay. To identify the jobs that are WFH and CI, I adopt the methodology of
 Dingel and Neiman (2020) and Mongey, Pilossoph and Weinberg (2020) used for
-the U.S. My baseline estimates show that around 78% of the workers in the private sector can’t WFH and 22% have CI jobs. Next, I find large heterogeneity in
+the U.S. My baseline estimates show that around 78% of the workers in the private sector can't WFH and 22% have CI jobs. Next, I find large heterogeneity in
 WFH and CI propensities across the income distribution, geographical locations,
 age groups, education levels, and production sectors. In addition, I study the access to social insurance, hand-to-mouth propensity, and intra-household insurance
 for households exposed to the pandemic. Lastly, I show that my baseline estimates
@@ -267,7 +310,7 @@ reallocating activity away from services. Taken together, our findings suggest t
 crises significantly delay structural change.</div>
       </div>
 
-     <!--  <div class="paper">
+      <!--  <div class="paper">
         <h3 class="paper-title">Constrained Credit Policies in Economies with Runs</h3>
       </div> -->
       
