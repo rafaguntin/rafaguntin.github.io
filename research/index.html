@@ -24,6 +24,15 @@ layout: null
     html { scroll-behavior: smooth; font-size: 16px; }
     body { font-family: var(--sans); color: var(--text); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
+/* Google Analytics */
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LTG8196XCN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LTG8196XCN');
+</script>
+
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,248,245,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); transition: box-shadow 0.3s; }
     nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.06); }
